@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/padding_margin_small">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/row_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_margin_small"
+        android:background="@drawable/item_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.cardview.widget.CardView
+                style="@style/CartProductImageCardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/item_background">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/test_product_image" />
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/product_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_margin_medium"
+                android:layout_marginEnd="@dimen/padding_margin_xlarge"
+                android:layout_marginBottom="@dimen/padding_margin_medium"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="Адицеф"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_medium"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/product_dosage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_margin_medium"
+                android:layout_marginEnd="@dimen/padding_margin_xlarge"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="Капсулы 300x10"
+                android:textColor="@color/light_gray"
+                android:textSize="@dimen/text_medium"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/product_country"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_margin_medium"
+                android:layout_marginEnd="@dimen/padding_margin_xlarge"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="Палестина"
+                android:textColor="@color/light_gray"
+                android:textSize="@dimen/text_medium" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buy_medicine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_margin_medium"
+                android:layout_marginTop="@dimen/padding_margin_medium"
+                android:layout_marginEnd="@dimen/padding_margin_medium"
+                android:layout_marginBottom="@dimen/padding_margin_xlarge"
+                android:text="18.87"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_medium" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
