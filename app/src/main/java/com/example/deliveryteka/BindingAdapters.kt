@@ -66,7 +66,7 @@ class BindingAdapters {
 
         @BindingAdapter("android:navigateToEditUserAddressFragment")
         @JvmStatic
-        fun navigateToEditUserAddressFragment(view: ImageView, navigate: Boolean) {
+        fun navigateToEditUserAddressFragment(view: Button, navigate: Boolean) {
             view.setOnClickListener {
                 if (navigate) {
                     view.findNavController()
@@ -74,6 +74,8 @@ class BindingAdapters {
                 }
             }
         }
+
+
 
         @BindingAdapter("android:navigateToChangePasswordFragment")
         @JvmStatic

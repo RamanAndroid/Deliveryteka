@@ -17,7 +17,6 @@ class MedicinePagingSource(
         val position = params.key ?: MEDICINE_STARTING_PAGE_INDEX
 
 
-
         return try {
             val response = deliverytekaApi.searchMedicine(query, position, params.loadSize)
             val medicines = response.result
@@ -35,5 +34,6 @@ class MedicinePagingSource(
         }
 
     }
+
 
 }

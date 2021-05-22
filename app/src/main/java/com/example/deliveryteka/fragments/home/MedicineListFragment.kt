@@ -1,6 +1,7 @@
 package com.example.deliveryteka.fragments.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
@@ -11,29 +12,29 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.deliveryteka.R
 import com.example.deliveryteka.data.models.MedicineInfo
-import com.example.deliveryteka.data.viewmodel.MedicineListViewModel
+import com.example.deliveryteka.data.viewmodel.DeliverytekaViewModel
 import com.example.deliveryteka.databinding.FragmentMedicineListBinding
 import com.example.deliveryteka.fragments.home.adapter.MedicineAdapter
 import com.example.deliveryteka.fragments.home.adapter.MedicineLoadStateAdapter
+import com.example.deliveryteka.utility.Constants
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 
 
 @AndroidEntryPoint
-class MedicineListFragment : Fragment(),MedicineAdapter.OnItemClickListener {
+class MedicineListFragment : Fragment(), MedicineAdapter.OnItemClickListener {
 
-    private val viewModel: MedicineListViewModel by viewModels()
+    private val viewModel: DeliverytekaViewModel by viewModels()
 
     private var _binding: FragmentMedicineListBinding? = null
     private val binding get() = _binding!!
+    val adapter = MedicineAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMedicineListBinding.inflate(inflater, container, false)
-
-        val adapter = MedicineAdapter(this)
 
         binding.apply {
             recyclerViewMedicineList.setHasFixedSize(true)
@@ -48,7 +49,7 @@ class MedicineListFragment : Fragment(),MedicineAdapter.OnItemClickListener {
 
             }
 
-            btnRetry.setOnClickListener{
+            btnRetry.setOnClickListener {
                 adapter.retry()
             }
 
@@ -60,17 +61,18 @@ class MedicineListFragment : Fragment(),MedicineAdapter.OnItemClickListener {
         }
 
 
-        adapter.addLoadStateListener { loadState->
-            binding.apply{
+        adapter.addLoadStateListener { loadState ->
+            binding.apply {
                 progressBarMedicineList.isVisible = loadState.source.refresh is LoadState.Loading
-                recyclerViewMedicineList.isVisible = loadState.source.refresh is LoadState.NotLoading
+                recyclerViewMedicineList.isVisible =
+                    loadState.source.refresh is LoadState.NotLoading
                 btnRetry.isVisible = loadState.source.refresh is LoadState.Error
                 textViewError.isVisible = loadState.source.refresh is LoadState.Error
 
-                if(loadState.source.refresh is LoadState.NotLoading&& loadState.append.endOfPaginationReached&&adapter.itemCount<1){
+                if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && adapter.itemCount < 1) {
                     recyclerViewMedicineList.isVisible = false
                     textViewEmpty.isVisible = true
-                }else{
+                } else {
                     textViewEmpty.isVisible = false
                 }
             }
@@ -82,7 +84,6 @@ class MedicineListFragment : Fragment(),MedicineAdapter.OnItemClickListener {
     }
 
 
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
 
@@ -90,6 +91,7 @@ class MedicineListFragment : Fragment(),MedicineAdapter.OnItemClickListener {
 
         val searchItem = menu.findItem(R.id.menu_action_search)
         val searchView = searchItem.actionView as SearchView
+
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
@@ -108,6 +110,13 @@ class MedicineListFragment : Fragment(),MedicineAdapter.OnItemClickListener {
             }
 
         })
+
+        searchView.setOnCloseListener {
+            binding.recyclerViewMedicineList.scrollToPosition(0)
+            viewModel.searchMedicines(Constants.DEFAULT_QUERY)
+            adapter.retry()
+            false
+        }
     }
 
 
@@ -117,7 +126,11 @@ class MedicineListFragment : Fragment(),MedicineAdapter.OnItemClickListener {
     }
 
     override fun onItemClick(medicine: MedicineInfo) {
-        val action = MedicineListFragmentDirections.actionMedicineListFragmentToDetailMedicineFragment(medicine)
+        val action =
+            MedicineListFragmentDirections.actionMedicineListFragmentToDetailMedicineFragment(
+                medicine,
+                medicine.medicineName
+            )
         findNavController().navigate(action)
     }
 }

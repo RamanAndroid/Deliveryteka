@@ -10,7 +10,20 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="@dimen/padding_margin_medium"
+        android:layout_marginTop="@dimen/padding_margin_xlarge"
         tools:context=".fragments.favorite.FavoriteListFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMedecineCartPriceList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/item_favorite" />
 
         <LinearLayout
             android:id="@+id/no_products_in_order_layout"
@@ -18,8 +31,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="8dp"
-            android:visibility="visible"
+            android:padding="@dimen/padding_margin_medium"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,12 +55,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/padding_margin_medium"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="@dimen/padding_margin_medium"
                 android:fillAlpha="0.5"
                 android:gravity="center"
                 android:text="Выберите товары и добавьте в избранное"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="@dimen/text_normal" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/return_home"

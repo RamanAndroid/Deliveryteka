@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CovidFragment">
+
+    <ScrollView
+        android:id="@+id/medicine_scroll_view"
+        android:padding="@dimen/padding_margin_small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:clipToPadding="false"
+        android:gravity="center_vertical"
+        android:padding="@dimen/padding_margin_xlarge"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/padding_margin_xxxlarge"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/country_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="Ситуация с COVID-19"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_xlarge" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/country_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="Республика Беларусь"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_xlarge" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/active_text_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_margin_small"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/color_error"
+            android:textSize="48sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/active_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="случаев заболеваний"
+            android:textColor="@color/color_error"
+            android:textSize="@dimen/text_medium" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/recovered_text_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_margin_small"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/light_green"
+            android:textSize="48sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/recovered_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="случаев выздоровления"
+            android:textColor="@color/light_green"
+            android:textSize="@dimen/text_medium" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/fatal_text_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_margin_small"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/dark_gray"
+            android:textSize="48sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/fatal_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="смертельных случаев"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/text_medium" />
+        <View
+            android:id="@+id/first_divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_height"
+            android:layout_marginHorizontal="@dimen/padding_margin_xlarge"
+            android:layout_marginTop="@dimen/padding_margin_xlarge"
+            android:layout_marginBottom="@dimen/padding_margin_xlarge"
+            android:background="@color/divider"
+            app:layout_constraintTop_toBottomOf="@+id/profile_medicine_cart"
+            tools:layout_editor_absoluteX="16dp" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/frequently_observed_symptoms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="@string/frequently_observed_symptoms"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_medium" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/symptoms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="@string/symptoms"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/text_medium" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/prevention"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="@string/prevention_covid_19"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_medium" />
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="@string/prevention"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/text_medium" />
+    </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,9 +18,9 @@
             android:layout_height="48dp"
             android:layout_marginTop="@dimen/padding_margin_medium"
             android:layout_marginEnd="@dimen/padding_margin_medium"
+            android:insetRight="4dp"
             android:navigateToLoginFragment="@{true}"
             android:outlineProvider="none"
-            android:insetRight="4dp"
             app:cornerRadius="24dp"
             app:icon="@drawable/ic_cross"
             app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +55,7 @@
                         android:id="@+id/phone_input"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="textEmailAddress" />
+                        android:inputType="phone" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,7 +71,8 @@
                         android:id="@+id/password_input"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="textPassword" />
+                        android:inputType="textPassword"
+                        android:maxLength="16" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,7 +89,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:imeOptions="actionDone"
-                        android:inputType="textPassword" />
+                        android:inputType="textPassword"
+                        android:maxLength="16" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -116,12 +118,12 @@
             android:focusable="true"
             android:gravity="center"
             android:translationZ="90dp"
-            android:visibility="gone"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.97">
+            app:layout_constraintVertical_bias="0.43">
 
             <ProgressBar
                 android:layout_width="wrap_content"

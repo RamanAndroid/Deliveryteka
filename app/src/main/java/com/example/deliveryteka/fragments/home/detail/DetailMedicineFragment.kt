@@ -1,12 +1,11 @@
 package com.example.deliveryteka.fragments.home.detail
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -17,9 +16,10 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.deliveryteka.R
-import com.example.deliveryteka.data.viewmodel.MedicineListViewModel
+import com.example.deliveryteka.data.viewmodel.DeliverytekaViewModel
 import com.example.deliveryteka.databinding.FragmentDetailMedicineBinding
 import com.example.deliveryteka.utility.Constants
+import com.example.deliveryteka.utility.Utils
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -29,12 +29,12 @@ class DetailMedicineFragment : Fragment() {
     private var _binding: FragmentDetailMedicineBinding? = null
     private val binding get() = _binding!!
     private val args by navArgs<DetailMedicineFragmentArgs>()
-    private val viewModel: MedicineListViewModel by viewModels()
+    private val viewModel: DeliverytekaViewModel by viewModels()
 
-    var userId: Int? = 0
-    var medicineId = ""
-    var price = 0.00f
-    var count = 1
+    private var userId: Int? = 0
+    private var medicineId = ""
+    private var price = 0.00f
+    private var count = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,8 +73,8 @@ class DetailMedicineFragment : Fragment() {
                 "Товар был добавлен в избранное!",
                 Toast.LENGTH_SHORT
             ).show()
+            userId?.let { id -> viewModel.addToFavorite(id, medicineId) }
 
-            userId?.let { id -> viewModel.addToFavorite(id, medicineId, count) }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -86,7 +86,7 @@ class DetailMedicineFragment : Fragment() {
     }
 
     private fun roundOffTo2DecPlaces(number: Float): String {
-        return String.format("%.2f бел.руб.", number)
+        return String.format("%.2f", number)
     }
 
     fun fillFields(binding: FragmentDetailMedicineBinding) {
@@ -124,12 +124,15 @@ class DetailMedicineFragment : Fragment() {
             price = medicine.medicinePrice.toDouble().toFloat()
 
             val textDosage =
-                StringBuilder("Капсулы ${medicine.medicineDosage}x${medicine.medicinePack}")
+                StringBuilder("${medicine.medicineForm} ${medicine.medicineDosage}x${medicine.medicinePack}")
             productDosage.text = textDosage
 
-            val textPrice =
-                StringBuilder("${medicine.medicinePrice} бел.руб.")
-            productPrice.text = textPrice
+            val textCategory =
+                StringBuilder("Категория препарата: ${medicine.medicineCategory}")
+            productCategory.text = textCategory
+
+
+            productPrice.text = medicine.medicinePrice
 
             medicineId = medicine.medicineId
 
@@ -160,6 +163,12 @@ class DetailMedicineFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+            }
+
+            openPdfBtn.isVisible = medicine.medicinePDF.isNotEmpty()
+
+            openPdfBtn.setOnClickListener {
+                Utils.openLink(requireActivity(),medicine.attributionUrlPDF)
             }
 
 

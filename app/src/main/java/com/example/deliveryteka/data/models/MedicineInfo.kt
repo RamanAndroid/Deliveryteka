@@ -47,8 +47,18 @@ data class MedicineInfo(
 
     @SerializedName("medicine_img")
     @Expose
-    val medicineImg: String
+    val medicineImg: String,
+
+    @SerializedName("count")
+    @Expose
+    val count: String?,
+
+    @SerializedName("medicine_pdf")
+    @Expose
+    val medicinePDF: String
 ) : Parcelable {
     val attributionUrl get() = Constants.BASE_URL + medicineImg
+
+    val attributionUrlPDF get() = Constants.BASE_URL + medicinePDF
 }
 

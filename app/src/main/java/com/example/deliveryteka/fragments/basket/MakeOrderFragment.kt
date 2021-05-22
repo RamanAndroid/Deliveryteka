@@ -1,10 +1,15 @@
 package com.example.deliveryteka.fragments.basket
 
+import android.app.AlertDialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.deliveryteka.R
 import com.example.deliveryteka.databinding.FragmentMakingOrderBinding
@@ -33,11 +38,34 @@ class MakeOrderFragment : Fragment() {
         )
         formatWatcher.installOn(binding.phoneInput)
 
+        val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+        val layoutDialog =
+            LayoutInflater.from(context).inflate(R.layout.confirm_order_layout, null)
+        builder.setView(layoutDialog)
+
+        val yesBtn = layoutDialog.findViewById<Button>(R.id.yes_btn)
+        val noBtn = layoutDialog.findViewById<Button>(R.id.no_btn)
+
+        val dialog = builder.create()
+
+
         binding.cardOrderBtn.setOnClickListener {
             it.findNavController().navigate(R.id.action_makeOrderFragment_to_makeBankCardFragment)
         }
         binding.cashOrderBtn.setOnClickListener {
-            it.findNavController().navigate(R.id.action_makeOrderFragment_to_basketFragment)
+            dialog.show()
+            dialog.setCancelable(false)
+
+            dialog.window?.setGravity(Gravity.CENTER)
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            yesBtn.setOnClickListener {
+                dialog.dismiss()
+                binding.cashOrderBtn.findNavController()
+                    .navigate(R.id.action_makeOrderFragment_to_medicineListFragment)
+            }
+            noBtn.setOnClickListener {
+                dialog.dismiss()
+            }
         }
 
         return binding.root

@@ -12,9 +12,9 @@
     <color name="color_primary_variant">#A59DBA</color>
     <color name="divider">#34000000</color>
 
-    <color name="light_green">#A6D6C8</color>
+    <color name="light_green">#57D79D</color>
+
     <color name="light_gray">#d3d3d3</color>
     <color name="dark_gray">#8A8A8A</color>
-
 
 </resources>

@@ -20,8 +20,8 @@
     <string name="select_product_and_add_to_basket">Выберите товары и добавьте в корзину</string>
     <string name="change_password">Изменить пароль</string>
     <string name="your_number_phone">Ваш номер телефона</string>
-    <string name="your_address">Ваш адрес</string>
-    <string name="your_name">Ваше имя</string>
+    <string name="your_address">Ваш адрес не указан</string>
+    <string name="your_name">Ваше имя не указано</string>
     <string name="save">Сохранить</string>
     <string name="street">Улица</string>
     <string name="house_housing">Дом/Корпус</string>
@@ -53,5 +53,17 @@
     <string name="no_data_for_query">Нет результатов по данному запросу!</string>
     <string name="search">Поиск</string>
     <string name="add_cart">Добавить в корзину</string>
+    <string name="open_pdf_manual">Открыть PDF инструкцию</string>
+    <string name="not_specified_medicine_card">Карта мед. обслуживания не указана</string>
+    <string name="pandemic">Ковид-19</string>
+    <string name="frequently_observed_symptoms">Часто наблюдаемые симптомы</string>
+    <string name="symptoms">повышение температуры тела; \nсухой кашель; \nутомляемость.</string>
+    <string name="prevention_covid_19">Профилактика COVID-19</string>
+    <string name="prevention">
+        Соблюдайте правила гигиены рук.\n
+        Часто мойте руки водой с мылом или обрабатывайте их спиртосодержащим антисептиком для рук.\n
+        Держитесь на безопасном расстоянии от чихающих или кашляющих людей. Носите маску, когда находитесь в окружении других людей.\n
+        Не прикасайтесь руками к глазам, рту или носу. При кашле или чихании прикрывайте рот и нос локтевым сгибом или платком. Если вы чувствуете недомогание, оставайтесь дома.\n
+        В случае повышения температуры, появления кашля и одышки обратитесь за медицинской помощью.</string>
 
 </resources>

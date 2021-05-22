@@ -18,11 +18,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding_margin_xlarge"
-            android:layout_marginTop="@dimen/padding_margin_small"
+            android:layout_marginTop="@dimen/padding_margin_medium"
             android:layout_marginEnd="40dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@string/your_number_phone"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/text_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile_name" />
@@ -32,14 +34,32 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding_margin_xlarge"
-            android:layout_marginTop="@dimen/padding_margin_small"
+            android:layout_marginTop="@dimen/padding_margin_medium"
             android:layout_marginEnd="40dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@string/your_address"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/text_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile_number_phone" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/profile_medicine_cart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_margin_xlarge"
+            android:layout_marginTop="@dimen/padding_margin_medium"
+            android:layout_marginEnd="40dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/not_specified_medicine_card"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/text_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_address" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/profile_name"
@@ -51,23 +71,22 @@
             android:maxLines="1"
             android:text="@string/your_name"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_large"
+            android:textSize="@dimen/text_normal"
             app:layout_constraintEnd_toStartOf="@+id/btn_change_profile"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatImageView
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_change_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/padding_margin_xlarge"
-            android:layout_marginEnd="@dimen/padding_margin_xlarge"
+            style="@style/RoundButton"
+            android:layout_marginTop="@dimen/padding_margin_medium"
+            android:layout_marginEnd="@dimen/padding_margin_medium"
             android:navigateToEditUserAddressFragment="@{true}"
-            android:src="@drawable/ic_edit_pen"
+            app:icon="@drawable/ic_edit_pen"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <View
             android:id="@+id/first_divider"
@@ -76,7 +95,7 @@
             android:layout_marginHorizontal="@dimen/padding_margin_xlarge"
             android:layout_marginTop="16dp"
             android:background="@color/divider"
-            app:layout_constraintTop_toBottomOf="@+id/profile_address"
+            app:layout_constraintTop_toBottomOf="@+id/profile_medicine_cart"
             tools:layout_editor_absoluteX="16dp" />
 
         <com.google.android.material.card.MaterialCardView
@@ -84,6 +103,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:navigateToChangePasswordFragment="@{true}"
+            app:layout_constraintBottom_toTopOf="@+id/medicine_card_data_layout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"

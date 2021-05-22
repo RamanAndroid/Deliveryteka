@@ -23,7 +23,7 @@ class AboutServiceFragment : Fragment() {
         _binding = FragmentAboutServiceBinding.inflate(inflater, container, false)
 
         binding.btnOpenOfficialWebsite.setOnClickListener {
-            Utils.openLink(requireActivity(),"https://komaroff-site.000webhostapp.com/index.html")
+            Utils.openLink(requireActivity(),"https://komaroff-site.000webhostapp.com/")
         }
 
         binding.btnOpenVkGleb.setOnClickListener {

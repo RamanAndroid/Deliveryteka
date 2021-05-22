@@ -3,7 +3,6 @@ package com.example.deliveryteka.fragments.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,16 +10,13 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
 import com.example.deliveryteka.R
 import com.example.deliveryteka.activities.MainActivity
 import com.example.deliveryteka.data.models.RequestAccess
-import com.example.deliveryteka.data.viewmodel.MedicineListViewModel
+import com.example.deliveryteka.data.viewmodel.DeliverytekaViewModel
 import com.example.deliveryteka.databinding.FragmentLoginBinding
 import com.example.deliveryteka.utility.Constants
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import ru.tinkoff.decoro.MaskImpl
 import ru.tinkoff.decoro.parser.UnderscoreDigitSlotsParser
 import ru.tinkoff.decoro.watchers.FormatWatcher
@@ -30,7 +26,7 @@ import ru.tinkoff.decoro.watchers.MaskFormatWatcher
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
-    private val viewModel: MedicineListViewModel by viewModels()
+    private val viewModel: DeliverytekaViewModel by viewModels()
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
@@ -49,13 +45,12 @@ class LoginFragment : Fragment() {
 
         binding.loginBtn.setOnClickListener {
 
-            binding.progressBar.isVisible = true
-
             if (verifyDataFromUser(
                     binding.phonesInput.text.toString(),
                     binding.passwordsInput.text.toString()
                 )
             ) {
+                binding.progressBar.isVisible = true
                 viewModel.login(
                     RequestAccess(
                         binding.phonesInput.text.toString(),
@@ -65,6 +60,7 @@ class LoginFragment : Fragment() {
                 )
                 viewModel.login.observe(viewLifecycleOwner, { response ->
                     if (response[0].user_id.isNotEmpty()) {
+                        binding.progressBar.isVisible = false
 
                         val sharedPref = requireActivity().getSharedPreferences(
                             Constants.USER_ID,
@@ -76,9 +72,8 @@ class LoginFragment : Fragment() {
                             }
                         }
 
+                        Constants.ID = response[0].user_id
 
-
-                        binding.progressBar.isVisible = false
                         val intent = Intent(requireActivity(), MainActivity::class.java)
                         startActivity(intent)
                     } else {

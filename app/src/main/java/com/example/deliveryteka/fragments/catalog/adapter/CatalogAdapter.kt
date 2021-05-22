@@ -8,30 +8,37 @@ import com.example.deliveryteka.data.models.CategoriesItem
 import com.example.deliveryteka.databinding.ItemCatalogBinding
 
 
-class CatalogAdapter : RecyclerView.Adapter<CatalogAdapter.CatalogViewHolder>() {
+class CatalogAdapter(private val listener: OnItemClickListener) :
+    RecyclerView.Adapter<CatalogAdapter.CatalogViewHolder>() {
 
     var dataList = emptyList<CategoriesItem>()
 
-    class CatalogViewHolder(private val binding: ItemCatalogBinding) :
+    inner class CatalogViewHolder(private val binding: ItemCatalogBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        init {
+            binding.layoutItemCatalog.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val item = dataList[position]
+                    listener.onItemClick(item)
+                }
+
+            }
+        }
 
         fun bind(catalogData: CategoriesItem) {
             binding.catalogData = catalogData
             binding.executePendingBindings()
         }
 
-        companion object {
-            fun from(parent: ViewGroup): CatalogViewHolder {
-                val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ItemCatalogBinding.inflate(layoutInflater, parent, false)
-                return CatalogViewHolder(binding)
-            }
-        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatalogViewHolder {
-        return CatalogViewHolder.from(parent)
+        val binding = ItemCatalogBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+        return CatalogViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: CatalogViewHolder, position: Int) {
@@ -39,11 +46,15 @@ class CatalogAdapter : RecyclerView.Adapter<CatalogAdapter.CatalogViewHolder>() 
         holder.bind(currentItem)
     }
 
+    interface OnItemClickListener {
+        fun onItemClick(categoriesItem: CategoriesItem)
+    }
+
     override fun getItemCount(): Int = dataList.size
 
     fun setData(categoriesData: List<CategoriesItem>) {
-        val toDoDiffUtil = CatalogDiffUtil(dataList,categoriesData)
-        val toDiffUtilResult= DiffUtil.calculateDiff(toDoDiffUtil)
+        val toDoDiffUtil = CatalogDiffUtil(dataList, categoriesData)
+        val toDiffUtilResult = DiffUtil.calculateDiff(toDoDiffUtil)
         this.dataList = categoriesData
         toDiffUtilResult.dispatchUpdatesTo(this)
     }

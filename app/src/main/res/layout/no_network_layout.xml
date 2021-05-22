@@ -21,7 +21,7 @@
             android:layout_height="match_parent">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/appCompatImageView"
+                android:id="@+id/dialog_images"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -41,10 +41,10 @@
                 android:textSize="@dimen/text_xlarge"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appCompatImageView" />
+                app:layout_constraintTop_toBottomOf="@+id/dialog_images" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/materialTextView3"
+                android:id="@+id/confirmation_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -84,7 +84,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/materialTextView3" />
+                app:layout_constraintTop_toBottomOf="@+id/confirmation_text" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -63,10 +63,13 @@ class MedicineAdapter(private val listener: OnItemClickListener) :
 
                 productTitle.text = medicine.medicineName
                 val textDosage =
-                    StringBuilder("Капсулы ${medicine.medicineDosage}x${medicine.medicinePack}")
+                    StringBuilder("${medicine.medicineForm} ${medicine.medicineDosage}x${medicine.medicinePack}")
                 productDosage.text = textDosage
                 productCountry.text = medicine.medicineCountry
-                buyMedicine.text = medicine.medicinePrice
+
+                val textPrice =
+                    StringBuilder("${medicine.medicinePrice} бел.руб.")
+                buyMedicine.text = textPrice
             }
         }
 
@@ -78,12 +81,12 @@ class MedicineAdapter(private val listener: OnItemClickListener) :
 
     companion object {
         private val MEDICINE_COMPARATOR = object : DiffUtil.ItemCallback<MedicineInfo>() {
-            override fun areItemsTheSame(oldItem: MedicineInfo, newItem: MedicineInfo) =
-                oldItem.medicineId == newItem.medicineId
+            override fun areItemsTheSame(oldInfo: MedicineInfo, newInfo: MedicineInfo) =
+                oldInfo.medicineId == newInfo.medicineId
 
 
-            override fun areContentsTheSame(oldItem: MedicineInfo, newItem: MedicineInfo) =
-                oldItem == newItem
+            override fun areContentsTheSame(oldInfo: MedicineInfo, newInfo: MedicineInfo) =
+                oldInfo == newInfo
 
         }
 

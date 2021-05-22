@@ -13,7 +13,7 @@ import androidx.fragment.app.viewModels
 import com.example.deliveryteka.R
 import com.example.deliveryteka.activities.MainActivity
 import com.example.deliveryteka.data.models.RequestAccess
-import com.example.deliveryteka.data.viewmodel.MedicineListViewModel
+import com.example.deliveryteka.data.viewmodel.DeliverytekaViewModel
 import com.example.deliveryteka.databinding.FragmentRegisterBinding
 import com.example.deliveryteka.utility.Constants
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,7 +24,7 @@ import ru.tinkoff.decoro.watchers.MaskFormatWatcher
 
 @AndroidEntryPoint
 class RegisterFragment : Fragment() {
-    private val viewModel: MedicineListViewModel by viewModels()
+    private val viewModel: DeliverytekaViewModel by viewModels()
 
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
@@ -43,13 +43,13 @@ class RegisterFragment : Fragment() {
 
         binding.registerBtn.setOnClickListener {
 
-            binding.progressBar.isVisible = true
             if (verifyDataFromUser(
                     binding.phoneInput.text.toString(),
                     binding.passwordInput.text.toString(),
                     binding.passwordRepeatInput.text.toString()
                 )
             ) {
+                binding.progressBar.isVisible = true
                 viewModel.sighUp(
                     RequestAccess(
                         binding.phoneInput.text.toString(),

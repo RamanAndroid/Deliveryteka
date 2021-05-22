@@ -3,14 +3,15 @@ package com.example.deliveryteka.activities
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.*
 import com.example.deliveryteka.R
+import com.example.deliveryteka.data.viewmodel.DeliverytekaViewModel
 import com.example.deliveryteka.databinding.ActivityMainBinding
 import com.example.deliveryteka.utility.NetworkChangeListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,6 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    private val viewModel: DeliverytekaViewModel by viewModels()
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
@@ -42,7 +44,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.basketFragment,
                 R.id.favoriteListFragment,
                 R.id.userProfileFragment,
-                R.id.aboutServiceFragment
+                R.id.aboutServiceFragment,
+                R.id.covidFragment
             ), binding.drawerLayout
         )
 
@@ -50,6 +53,9 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         binding.navView.setupWithNavController(navController)
+
+
+
     }
 
 

@@ -33,7 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/padding_margin_xlarge"
-                    android:hint="@string/your_name">
+                    android:hint="Имя">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/name_input"
