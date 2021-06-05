@@ -5,6 +5,6 @@
     <item android:alpha="0.32" android:color="@color/color_error" android:state_focused="true" android:state_hovered="true"/>
     <item android:alpha="0.24" android:color="@color/color_error" android:state_focused="true"/>
     <item android:alpha="0.08" android:color="@color/color_error" android:state_hovered="true"/>
-    <item android:alpha="0.00" android:color="@color/color_error"/>
+    <item android:alpha="0.32" android:color="@color/color_error"/>
 
 </selector>

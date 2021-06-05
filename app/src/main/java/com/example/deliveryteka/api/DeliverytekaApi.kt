@@ -94,4 +94,25 @@ interface DeliverytekaApi {
 
     @GET("covid_info.php")
     suspend fun covidInfo(): CovidInfo
+
+    @GET("add_order.php")
+    suspend fun addOrder(
+        @Query("user_id") userId: Int,
+        @Query("user_name") userName: String,
+        @Query("user_address") userAddress: String,
+        @Query("user_phone") userPhone: String,
+        @Query("user_comment") userComment: String?,
+        @Query("pay_method") payMethod:Int
+    )
+
+
+    @GET("get_orders.php")
+    suspend fun getOrders(
+        @Query("user_id") userId: Int
+    ):Orders
+
+    @GET("get_order_content.php")
+    suspend fun getOrderContent(
+        @Query("order_id") userId: Int
+    ):BasketMedicine
 }

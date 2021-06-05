@@ -81,12 +81,14 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_change_profile"
             style="@style/RoundButton"
-            android:layout_marginTop="@dimen/padding_margin_medium"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="@dimen/padding_margin_medium"
             android:navigateToEditUserAddressFragment="@{true}"
             app:icon="@drawable/ic_edit_pen"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/light_gray"
+            app:strokeWidth="1dp" />
 
         <View
             android:id="@+id/first_divider"
@@ -195,8 +197,9 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/sign_out_btn"
+            style="@style/LoginTheme"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/auth_button_height"
             android:layout_marginStart="@dimen/padding_margin_medium"
             android:layout_marginTop="@dimen/padding_margin_medium"
             android:layout_marginEnd="@dimen/padding_margin_medium"

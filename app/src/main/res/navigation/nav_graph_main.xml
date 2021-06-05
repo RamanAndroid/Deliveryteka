@@ -39,6 +39,13 @@
         <action
             android:id="@+id/action_orderFragment_to_medicineListFragment2"
             app:destination="@id/medicineListFragment" />
+        <action
+            android:id="@+id/action_orderFragment_to_checkOrderContentFragment"
+            app:destination="@id/checkOrderContentFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/basketFragment"
@@ -47,13 +54,21 @@
         tools:layout="@layout/fragment_basket" >
         <action
             android:id="@+id/action_basketFragment_to_makeFillOrderFragment"
-            app:destination="@id/makeFillOrderFragment" />
+            app:destination="@id/makeFillOrderFragment"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom" />
         <action
             android:id="@+id/action_basketFragment_to_medicineListFragment"
             app:destination="@id/medicineListFragment" />
         <action
             android:id="@+id/action_basketFragment_to_makeOrderFragment"
-            app:destination="@id/makeOrderFragment" />
+            app:destination="@id/makeOrderFragment"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom" />
     </fragment>
     <fragment
         android:id="@+id/favoriteListFragment"
@@ -145,27 +160,7 @@
         android:label="Оформить заказ"
         tools:layout="@layout/fragment_making_order">
         <action
-            android:id="@+id/action_makeOrderFragment_to_makeBankCardFragment"
-            app:destination="@id/makeBankCardFragment"
-            app:enterAnim="@anim/from_bottom"
-            app:exitAnim="@anim/to_top"
-            app:popEnterAnim="@anim/from_top"
-            app:popExitAnim="@anim/to_bottom" />
-        <action
             android:id="@+id/action_makeOrderFragment_to_medicineListFragment"
-            app:destination="@id/medicineListFragment"
-            app:enterAnim="@anim/from_bottom"
-            app:exitAnim="@anim/to_top"
-            app:popEnterAnim="@anim/from_top"
-            app:popExitAnim="@anim/to_bottom" />
-    </fragment>
-    <fragment
-        android:id="@+id/makeBankCardFragment"
-        android:name="com.example.deliveryteka.fragments.basket.MakeBankCardFragment"
-        android:label="Банковская карта"
-        tools:layout="@layout/fragment_make_bank_card">
-        <action
-            android:id="@+id/action_makeBankCardFragment_to_medicineListFragment"
             app:destination="@id/medicineListFragment"
             app:enterAnim="@anim/from_bottom"
             app:exitAnim="@anim/to_top"
@@ -182,7 +177,9 @@
             app:argType="com.example.deliveryteka.data.models.MedicineInfo" />
         <action
             android:id="@+id/action_detailMedicineFragment_to_medicineListFragment"
-            app:destination="@id/medicineListFragment" />
+            app:destination="@id/medicineListFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right" />
         <argument
             android:name="title"
             app:argType="string" />
@@ -198,6 +195,11 @@
         <argument
             android:name="title"
             app:argType="string" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_favoriteListFragment"
+            app:destination="@id/favoriteListFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/covidFragment"
@@ -233,20 +235,15 @@
             app:argType="string" />
         <action
             android:id="@+id/action_detailMedicineCategoryFragment_to_catalogFragment"
-            app:destination="@id/catalogFragment" />
+            app:destination="@id/catalogFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/from_right" />
     </fragment>
     <fragment
         android:id="@+id/makeFillOrderFragment"
         android:name="com.example.deliveryteka.fragments.basket.MakeFillOrderFragment"
         android:label="Оформить заказ"
         tools:layout="@layout/fragment_make_fill_order">
-        <action
-            android:id="@+id/action_makeFillOrderFragment_to_makeBankCardFragment"
-            app:destination="@id/makeBankCardFragment"
-            app:enterAnim="@anim/from_bottom"
-            app:exitAnim="@anim/to_top"
-            app:popEnterAnim="@anim/from_top"
-            app:popExitAnim="@anim/to_bottom" />
         <action
             android:id="@+id/action_makeFillOrderFragment_to_makeOrderFragment"
             app:destination="@id/makeOrderFragment"
@@ -261,5 +258,14 @@
             app:exitAnim="@anim/to_top"
             app:popEnterAnim="@anim/from_top"
             app:popExitAnim="@anim/to_bottom" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkOrderContentFragment"
+        android:name="com.example.deliveryteka.fragments.order.CheckOrderContentFragment"
+        android:label="Заказ №{id}"
+        tools:layout="@layout/fragment_check_order_content" >
+        <argument
+            android:name="id"
+            app:argType="string" />
     </fragment>
 </navigation>

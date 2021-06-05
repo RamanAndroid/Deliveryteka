@@ -33,7 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/padding_margin_xlarge"
-                    android:hint="@string/your_name">
+                    android:hint="Ваше имя*">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/name_input"
@@ -54,7 +54,7 @@
                         android:id="@+id/phone_input"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="textAutoComplete"
+                        android:inputType="phone"
                         android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,7 +119,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:inputType="number"
-                        android:maxLength="4"
+                        android:maxLength="3"
                         android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -145,35 +145,23 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/padding_margin_small">
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/card_order_btn"
+                        android:id="@+id/make_order"
                         style="@style/LoginTheme"
-                        android:layout_width="150dp"
+                        android:layout_width="match_parent"
+                        android:layout_margin="@dimen/padding_margin_small"
                         android:layout_height="@dimen/auth_button_height"
-                        android:text="@string/payment_by_card"
+                        android:text="@string/make_order"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_medium"
-                        app:layout_constraintEnd_toStartOf="@+id/cash_order_btn"
-                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/cash_order_btn"
-                        style="@style/LoginTheme"
-                        android:layout_width="150dp"
-                        android:layout_height="@dimen/auth_button_height"
-                        android:text="@string/payment_by_cash"
-                        android:textAllCaps="true"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_medium"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.79"
-                        app:layout_constraintStart_toEndOf="@+id/card_order_btn"
-                        app:layout_constraintTop_toTopOf="@+id/card_order_btn" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>

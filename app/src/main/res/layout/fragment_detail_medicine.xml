@@ -167,8 +167,9 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/open_pdf_btn"
+            style="@style/LoginTheme"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/auth_button_height"
             android:layout_marginStart="@dimen/padding_margin_xlarge"
             android:layout_marginTop="@dimen/padding_margin_medium"
             android:layout_marginEnd="@dimen/padding_margin_xlarge"

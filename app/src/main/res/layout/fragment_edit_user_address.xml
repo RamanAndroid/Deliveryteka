@@ -33,7 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/padding_margin_xlarge"
-                    android:hint="Имя">
+                    android:hint="Имя*">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/name_input"
@@ -110,8 +110,9 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/save_btn"
+                    style="@style/LoginTheme"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/auth_button_height"
                     android:layout_marginStart="@dimen/padding_margin_medium"
                     android:layout_marginTop="@dimen/padding_margin_medium"
                     android:layout_marginEnd="@dimen/padding_margin_medium"

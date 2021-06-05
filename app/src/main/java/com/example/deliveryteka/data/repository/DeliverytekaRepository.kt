@@ -95,4 +95,16 @@ class DeliverytekaRepository @Inject constructor(private val deliverytekaApi: De
         return deliverytekaApi.covidInfo()
     }
 
+    suspend fun addOrder(userId: Int,userName: String,userAddress: String,userPhone:String,userComment:String?,payMethod:Int) {
+        return deliverytekaApi.addOrder(userId, userName, userAddress, userPhone, userComment,payMethod)
+    }
+
+    suspend fun getOrders(userId: Int):Orders {
+        return deliverytekaApi.getOrders(userId)
+    }
+
+    suspend fun getOrderContent(orderId: Int): BasketMedicine {
+        return deliverytekaApi.getOrderContent(orderId)
+    }
+
 }

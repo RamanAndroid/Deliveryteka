@@ -79,10 +79,11 @@ class BasketFragment : Fragment(),BasketAdapter.OnItemClickListener{
                 val userInfo = it.result
 
                 if(userInfo[0].user_name.isNullOrBlank()||userInfo[0].user_address.isNullOrBlank()||userInfo[0].user_phone.isEmpty()){
-                    binding.makeOrderBtn.findNavController()
-                        .navigate(R.id.action_makeFillOrderFragment_to_makeOrderFragment)
-                }else{
                     binding.makeOrderBtn.findNavController().navigate(R.id.action_basketFragment_to_makeOrderFragment)
+
+                }else{
+                    binding.makeOrderBtn.findNavController()
+                        .navigate(R.id.action_basketFragment_to_makeFillOrderFragment)
                 }
 
             }

@@ -45,24 +45,29 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/card_code_input"
+                        style="@style/AppTextField"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:inputType="phone"
                         android:maxLength="19"
-                        android:textColor="@color/black" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/save_btn"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/auth_button_height"
-                        android:layout_marginStart="@dimen/padding_margin_medium"
-                        android:layout_marginTop="@dimen/padding_margin_medium"
-                        android:layout_marginEnd="@dimen/padding_margin_medium"
-                        android:layout_marginBottom="@dimen/padding_margin_xlarge"
-                        android:text="@string/save"
-                        android:textAllCaps="true"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_medium" />
+                        android:textColorHint="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/save_btn"
+                    style="@style/LoginTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/auth_button_height"
+                    android:layout_marginStart="@dimen/padding_margin_medium"
+                    android:layout_marginTop="@dimen/padding_margin_medium"
+                    android:layout_marginEnd="@dimen/padding_margin_medium"
+                    android:layout_marginBottom="@dimen/padding_margin_xlarge"
+                    android:text="@string/save"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_medium" />
+
             </LinearLayout>
         </ScrollView>
 

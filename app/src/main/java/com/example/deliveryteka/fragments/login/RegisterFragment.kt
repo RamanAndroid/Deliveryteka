@@ -35,7 +35,7 @@ class RegisterFragment : Fragment() {
     ): View? {
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
 
-        val slots = UnderscoreDigitSlotsParser().parseSlots("+375 (__)__-__-___")
+        val slots = UnderscoreDigitSlotsParser().parseSlots("+375 (__)___-__-__")
         val formatWatcher: FormatWatcher = MaskFormatWatcher( // форматировать текст будет вот он
             MaskImpl.createTerminated(slots)
         )
@@ -49,28 +49,36 @@ class RegisterFragment : Fragment() {
                     binding.passwordRepeatInput.text.toString()
                 )
             ) {
+                val password = getHashedData()
                 binding.progressBar.isVisible = true
                 viewModel.sighUp(
                     RequestAccess(
                         binding.phoneInput.text.toString(),
-                        binding.passwordInput.text.toString()
+                        password
                     )
 
                 )
                 viewModel.sighUp.observe(viewLifecycleOwner, { response ->
                     if (response[0].user_id.isNotEmpty()) {
-
+                        binding.progressBar.isVisible = false
 
                         val sharedPref = requireActivity().getSharedPreferences(
                             Constants.USER_ID,
                             Context.MODE_PRIVATE)
+
                         sharedPref?.let {
                             with(sharedPref.edit()) {
                                 putInt(Constants.USER_ID, response[0].user_id.toInt()).apply()
                             }
                         }
 
-                        binding.progressBar.isVisible = false
+                        sharedPref?.let {
+                            with(sharedPref.edit()) {
+                                putString(Constants.USER_PASSWORD, password).apply()
+                            }
+                        }
+
+
                         val intent = Intent(requireActivity(), MainActivity::class.java)
                         startActivity(intent)
 
@@ -129,4 +137,8 @@ class RegisterFragment : Fragment() {
         }
     }
 
+    private fun getHashedData(): String{
+        val text = binding.passwordInput.text.toString()
+        return viewModel.getHash(text)
+    }
 }

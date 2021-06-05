@@ -1,18 +1,17 @@
 package com.example.deliveryteka.fragments.user
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.example.deliveryteka.R
-import com.example.deliveryteka.data.models.UserInfoItem
+import com.example.deliveryteka.SplashCentered
 import com.example.deliveryteka.data.viewmodel.DeliverytekaViewModel
 import com.example.deliveryteka.databinding.FragmentUserProfileBinding
-import com.example.deliveryteka.fragments.home.MedicineListFragmentDirections
 import com.example.deliveryteka.utility.Constants
 import com.example.deliveryteka.utility.Utils.Companion.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,6 +51,16 @@ class UserProfileFragment : Fragment() {
                     userInfo[0].med_card_number,
                     getString(R.string.not_specified_medicine_card)
                 )
+            }
+
+            signOutBtn.setOnClickListener {
+                sharedPref?.let {
+                    with(sharedPref.edit()) {
+                        putString(Constants.USER_PASSWORD, "").apply()
+                    }
+                }
+                val intent = Intent(requireContext(), SplashCentered::class.java)
+                startActivity(intent)
             }
         }
 

@@ -37,7 +37,7 @@ class LoginFragment : Fragment() {
     ): View? {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
 
-        val slots = UnderscoreDigitSlotsParser().parseSlots("+375 (__)__-__-___")
+        val slots = UnderscoreDigitSlotsParser().parseSlots("+375 (__)___-__-__")
         val formatWatcher: FormatWatcher = MaskFormatWatcher(
             MaskImpl.createTerminated(slots)
         )
@@ -50,11 +50,12 @@ class LoginFragment : Fragment() {
                     binding.passwordsInput.text.toString()
                 )
             ) {
+                val password = getHashedData()
                 binding.progressBar.isVisible = true
                 viewModel.login(
                     RequestAccess(
                         binding.phonesInput.text.toString(),
-                        binding.passwordsInput.text.toString()
+                        password
                     )
 
                 )
@@ -69,6 +70,12 @@ class LoginFragment : Fragment() {
                         sharedPref?.let {
                             with(sharedPref.edit()) {
                                 putInt(Constants.USER_ID, response[0].user_id.toInt()).apply()
+                            }
+                        }
+
+                        sharedPref?.let {
+                            with(sharedPref.edit()) {
+                                putString(Constants.USER_PASSWORD, password).apply()
                             }
                         }
 
@@ -120,5 +127,10 @@ class LoginFragment : Fragment() {
                 .show()
             false
         }
+    }
+
+    private fun getHashedData(): String{
+        val text = binding.passwordsInput.text.toString()
+        return viewModel.getHash(text)
     }
 }

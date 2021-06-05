@@ -145,7 +145,7 @@ class FavoriteFragment : Fragment() {
 
             binding.addCartBtn.setOnClickListener {
 
-                findNavController().navigate(R.id.action_detailMedicineFragment_to_medicineListFragment)
+                findNavController().navigate(R.id.action_favoriteFragment_to_favoriteListFragment)
                 userId?.let { id -> viewModel.addToBasket(id, medicineId, count) }
                 Toast.makeText(
                     requireContext(),

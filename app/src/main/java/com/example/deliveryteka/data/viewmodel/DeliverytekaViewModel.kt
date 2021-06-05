@@ -11,6 +11,7 @@ import com.example.deliveryteka.data.models.*
 import com.example.deliveryteka.data.repository.DeliverytekaRepository
 import com.example.deliveryteka.utility.Constants
 import kotlinx.coroutines.launch
+import java.security.MessageDigest
 
 class DeliverytekaViewModel @ViewModelInject constructor(
     private val repository: DeliverytekaRepository,
@@ -26,6 +27,8 @@ class DeliverytekaViewModel @ViewModelInject constructor(
     var getCategories: MutableLiveData<Categories> = MutableLiveData()
     var getUserInfo: MutableLiveData<UserInfo> = MutableLiveData()
     var covidInfo: MutableLiveData<CovidInfo> = MutableLiveData()
+    var getOrders: MutableLiveData<Orders> = MutableLiveData()
+    var getOrderContent: MutableLiveData<BasketMedicine> = MutableLiveData()
 
     private val currentQueryMedicine = MutableLiveData(Constants.DEFAULT_QUERY)
     val medicines = currentQueryMedicine.switchMap { queryString ->
@@ -120,10 +123,10 @@ class DeliverytekaViewModel @ViewModelInject constructor(
         }
     }
 
-    fun updateUserPassword(userId: Int, userPassword: String,newPassword: String) {
+    fun updateUserPassword(userId: Int, userPassword: String, newPassword: String) {
         viewModelScope.launch {
-            val response = repository.updateUserPassword(userId,userPassword, newPassword)
-            login.value= response
+            val response = repository.updateUserPassword(userId, userPassword, newPassword)
+            login.value = response
         }
     }
 
@@ -138,6 +141,45 @@ class DeliverytekaViewModel @ViewModelInject constructor(
             val response = repository.covidInfo()
             covidInfo.value = response
         }
+    }
+
+    fun addOrder(
+        userId: Int,
+        userName: String,
+        userAddress: String,
+        userPhone: String,
+        userComment: String?,
+        payMethod: Int
+    ) {
+        viewModelScope.launch {
+            repository.addOrder(userId, userName, userAddress, userPhone, userComment, payMethod)
+        }
+    }
+
+
+    fun getOrders(userId: Int) {
+        viewModelScope.launch {
+            val response = repository.getOrders(userId)
+            getOrders.value = response
+        }
+    }
+
+    fun getOrderContent(orderId: Int) {
+        viewModelScope.launch {
+            val response = repository.getOrderContent(orderId)
+            getOrderContent.value = response
+        }
+    }
+
+    fun getHash(plainText: String): String {
+        val bytes = MessageDigest.getInstance("SHA-512").digest(plainText.toByteArray())
+        return toHex(bytes)
+
+    }
+
+    private fun toHex(byteArray: ByteArray): String {
+
+        return byteArray.joinToString("") { "%02x".format(it) }
     }
 
 }

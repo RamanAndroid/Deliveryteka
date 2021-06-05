@@ -14,17 +14,16 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/close_btn"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            style="@style/RoundButton"
             android:layout_marginTop="@dimen/padding_margin_medium"
             android:layout_marginEnd="@dimen/padding_margin_medium"
-            android:insetRight="4dp"
             android:navigateToLoginFragment="@{true}"
-            android:outlineProvider="none"
-            app:cornerRadius="24dp"
             app:icon="@drawable/ic_cross"
+            app:iconTint="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/light_gray"
+            app:strokeWidth="1dp" />
 
         <ScrollView
             android:id="@+id/scroll_view"
@@ -96,11 +95,13 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/register_btn"
+                    style="@style/LoginTheme"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/auth_button_height"
                     android:layout_marginStart="@dimen/padding_margin_medium"
                     android:layout_marginTop="@dimen/padding_margin_medium"
                     android:layout_marginEnd="@dimen/padding_margin_medium"
+                    android:textAllCaps="true"
                     android:layout_marginBottom="@dimen/padding_margin_xlarge"
                     android:text="@string/sign_up"
                     android:textColor="@color/black"

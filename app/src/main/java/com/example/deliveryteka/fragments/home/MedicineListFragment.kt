@@ -3,6 +3,7 @@ package com.example.deliveryteka.fragments.home
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.view.animation.OvershootInterpolator
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -18,6 +19,7 @@ import com.example.deliveryteka.fragments.home.adapter.MedicineAdapter
 import com.example.deliveryteka.fragments.home.adapter.MedicineLoadStateAdapter
 import com.example.deliveryteka.utility.Constants
 import dagger.hilt.android.AndroidEntryPoint
+import jp.wasabeef.recyclerview.animators.FadeInUpAnimator
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 
 
@@ -44,7 +46,7 @@ class MedicineListFragment : Fragment(), MedicineAdapter.OnItemClickListener {
             )
             recyclerViewMedicineList.layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            recyclerViewMedicineList.itemAnimator = SlideInUpAnimator().apply {
+            recyclerViewMedicineList.itemAnimator = FadeInUpAnimator(OvershootInterpolator(1f)).apply {
                 addDuration = 300
 
             }
@@ -101,11 +103,20 @@ class MedicineListFragment : Fragment(), MedicineAdapter.OnItemClickListener {
                     binding.recyclerViewMedicineList.scrollToPosition(0)
                     viewModel.searchMedicines(query)
                     searchView.clearFocus()
+                }else{
+                    binding.recyclerViewMedicineList.scrollToPosition(0)
+                    viewModel.searchMedicines(Constants.DEFAULT_QUERY)
+                    searchView.clearFocus()
                 }
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText.isNullOrEmpty()) {
+                    binding.recyclerViewMedicineList.scrollToPosition(0)
+                    viewModel.searchMedicines(Constants.DEFAULT_QUERY)
+                    searchView.isIconified = true
+                }
                 return true
             }
 
@@ -114,7 +125,6 @@ class MedicineListFragment : Fragment(), MedicineAdapter.OnItemClickListener {
         searchView.setOnCloseListener {
             binding.recyclerViewMedicineList.scrollToPosition(0)
             viewModel.searchMedicines(Constants.DEFAULT_QUERY)
-            adapter.retry()
             false
         }
     }

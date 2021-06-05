@@ -35,7 +35,9 @@
                     android:layout_marginEnd="@dimen/padding_margin_medium"
                     app:icon="@drawable/ic_edit_pen"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/light_gray"
+                    app:strokeWidth="1dp" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/profile_number_phone"
@@ -104,35 +106,23 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:padding="@dimen/padding_margin_small">
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/card_order_btn"
+                    android:id="@+id/make_order"
                     style="@style/LoginTheme"
-                    android:layout_width="150dp"
+                    android:layout_width="match_parent"
                     android:layout_height="@dimen/auth_button_height"
-                    android:text="@string/payment_by_card"
+                    android:layout_margin="@dimen/padding_margin_small"
+                    android:text="@string/make_order"
                     android:textAllCaps="true"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_medium"
-                    app:layout_constraintEnd_toStartOf="@+id/cash_order_btn"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/cash_order_btn"
-                    style="@style/LoginTheme"
-                    android:layout_width="150dp"
-                    android:layout_height="@dimen/auth_button_height"
-                    android:text="@string/payment_by_cash"
-                    android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_medium"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.79"
-                    app:layout_constraintStart_toEndOf="@+id/card_order_btn"
-                    app:layout_constraintTop_toTopOf="@+id/card_order_btn" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

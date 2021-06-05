@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
         binding.navView.setupWithNavController(navController)
 
 
-
     }
 
 
@@ -73,10 +72,12 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         val intentFilter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
         registerReceiver(networkChangeListener, intentFilter)
+
     }
 
     override fun onStop() {
         super.onStop()
+        finish()
         unregisterReceiver(networkChangeListener)
     }
 
